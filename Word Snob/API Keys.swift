@@ -7,5 +7,5 @@
 //
 
 
-let appId = "dd35b260"
-let appKey = "14c2348360dddba85e03246a192ca221"
+let appId = "xxxxxxxx"
+let appKey = "xxxxxxxx"
