@@ -9,8 +9,14 @@
 import Foundation
 
 struct QuerySession {
-    func query(at url: URL, withWord word: String, completion: @escaping (Lemma) -> ()) {
+    func query(inLanguage language: String, withWord word: String, completion: @escaping (RetrieveEntry) -> ()) {
         
+        let baseURLString = "https://od-api.oxforddictionaries.com:443/api/v1/entries/"
+        guard let url = URL(string: "\(baseURLString)\(language)/\(word)") else {
+            print("Couldn't load url")
+            return
+        }
+
         let requestValues = [
             "application/json": "Accept",
             appId: "app_id",
@@ -20,15 +26,17 @@ struct QuerySession {
         
         let session = URLSession.shared
         _ = session.dataTask(with: request, completionHandler: { data, response, error in
-            if let response = response,
-                let data = data,
-                let jsonData = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) {
-                print(response)
-                print(jsonData)
+            guard error == nil else { return print("Session error: ", error) }
+            guard let response = response else {
+                return print("No response")
+            }
+            
+            let decoder = JSONDecoder()
+            if let data = data, let jsonData = try? decoder.decode(RetrieveEntry.self, from: data) {
+                print("\(response)\n Response was printed")
+                completion(jsonData)
             } else {
-                print(error)
-                print(NSString.init(data: data!, encoding: String.Encoding.utf8.rawValue))
-                print("FAILED")
+                print("Unable to get JSON from data")
             }
         }).resume()
 
