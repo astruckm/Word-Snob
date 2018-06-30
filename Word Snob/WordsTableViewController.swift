@@ -12,7 +12,7 @@ class WordsTableViewController: UITableViewController {
     
     let querySession = QuerySession()
     let language = "en"
-    let word = "Prognosticate"
+    let word = "antediluvian"
     let storedWords = [RetrieveEntry]()
     
     //word id is case sensitive and lowercase is required
@@ -41,7 +41,6 @@ extension WordsTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
-        
         
         return cell
     }
