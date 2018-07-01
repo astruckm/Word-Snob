@@ -15,6 +15,8 @@
 		7284CE6520E2AC5D007726B0 /* Word_SnobTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7284CE6420E2AC5D007726B0 /* Word_SnobTests.swift */; };
 		7284CE7020E2FA0B007726B0 /* URL Helper Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7284CE6F20E2FA0B007726B0 /* URL Helper Extensions.swift */; };
 		7284CE7220E34295007726B0 /* API Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7284CE7120E34295007726B0 /* API Keys.swift */; };
+		72DE486D20E848950011A4A1 /* WordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DE486C20E848940011A4A1 /* WordCell.swift */; };
+		72DE487020E87F290011A4A1 /* WordsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DE486F20E87F290011A4A1 /* WordsHeader.swift */; };
 		72FFAC5920E463600082FC01 /* JSONResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FFAC5820E463600082FC01 /* JSONResponse.swift */; };
 		72FFAC5B20E472520082FC01 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FFAC5A20E472520082FC01 /* Query.swift */; };
 /* End PBXBuildFile section */
@@ -42,6 +44,8 @@
 		7284CE6620E2AC5D007726B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7284CE6F20E2FA0B007726B0 /* URL Helper Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL Helper Extensions.swift"; sourceTree = "<group>"; };
 		7284CE7120E34295007726B0 /* API Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API Keys.swift"; sourceTree = "<group>"; };
+		72DE486C20E848940011A4A1 /* WordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCell.swift; sourceTree = "<group>"; };
+		72DE486F20E87F290011A4A1 /* WordsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsHeader.swift; sourceTree = "<group>"; };
 		72FFAC5820E463600082FC01 /* JSONResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONResponse.swift; sourceTree = "<group>"; };
 		72FFAC5A20E472520082FC01 /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,10 +91,9 @@
 			children = (
 				7284CE4C20E2AC51007726B0 /* AppDelegate.swift */,
 				7284CE4E20E2AC51007726B0 /* WordsTableViewController.swift */,
-				72FFAC5A20E472520082FC01 /* Query.swift */,
-				72FFAC5820E463600082FC01 /* JSONResponse.swift */,
-				7284CE7120E34295007726B0 /* API Keys.swift */,
-				7284CE6F20E2FA0B007726B0 /* URL Helper Extensions.swift */,
+				72DE486C20E848940011A4A1 /* WordCell.swift */,
+				72DE486F20E87F290011A4A1 /* WordsHeader.swift */,
+				72DE486E20E87E6B0011A4A1 /* Networking */,
 				7284CE5620E2AC5C007726B0 /* Assets.xcassets */,
 				7284CE5820E2AC5C007726B0 /* LaunchScreen.storyboard */,
 				7284CE5B20E2AC5C007726B0 /* Info.plist */,
@@ -106,6 +109,17 @@
 				7284CE6620E2AC5D007726B0 /* Info.plist */,
 			);
 			path = "Word SnobTests";
+			sourceTree = "<group>";
+		};
+		72DE486E20E87E6B0011A4A1 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				72FFAC5A20E472520082FC01 /* Query.swift */,
+				72FFAC5820E463600082FC01 /* JSONResponse.swift */,
+				7284CE7120E34295007726B0 /* API Keys.swift */,
+				7284CE6F20E2FA0B007726B0 /* URL Helper Extensions.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,6 +223,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				72FFAC5920E463600082FC01 /* JSONResponse.swift in Sources */,
+				72DE487020E87F290011A4A1 /* WordsHeader.swift in Sources */,
+				72DE486D20E848950011A4A1 /* WordCell.swift in Sources */,
 				7284CE7220E34295007726B0 /* API Keys.swift in Sources */,
 				7284CE5520E2AC51007726B0 /* Word_Snob.xcdatamodeld in Sources */,
 				7284CE4F20E2AC51007726B0 /* WordsTableViewController.swift in Sources */,
