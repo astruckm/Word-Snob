@@ -23,16 +23,10 @@ class WordCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
+        label.font = label.font.withSize(12)
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
-    
-    let moreInfo: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("More Info", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -46,22 +40,12 @@ class WordCell: UITableViewCell {
     
     private func setUpViews() {
         addSubview(headWord)
-        addSubview(moreInfo)
         addSubview(definition)
         
-        moreInfo.addTarget(self, action: #selector(getMoreInfo), for: .touchUpInside)
-        
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[v0(>=80)]-8-[v1(>=150)]-20-[v2(80)]-8-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": headWord, "v1": definition, "v2": moreInfo]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[v0]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": headWord]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[v0]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": moreInfo]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[v0(>=80)]-8-[v1(>=150)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": headWord, "v1": definition]))
+        headWord.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        definition.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
     }
-    
-    @objc private func getMoreInfo() {
-        print("moreInfo tapped")
-    }
-    
-    
-    
     
     
     override func setSelected(_ selected: Bool, animated: Bool) {

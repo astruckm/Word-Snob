@@ -39,9 +39,9 @@ struct QuerySession {
                 print("Unable to get JSON from data")
             }
         }).resume()
-
-        
     }
+    
+    
 }
 
 

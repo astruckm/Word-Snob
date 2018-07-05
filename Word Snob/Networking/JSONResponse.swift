@@ -8,6 +8,10 @@
 
 import Foundation
 
+//*******************************
+//MARK: Word definition endpoint
+//*******************************
+
 //Top level
 struct RetrieveEntry: Decodable {
     let results: [HeadwordEntry]
@@ -39,5 +43,17 @@ struct Pronunciation: Decodable {
 }
 
 
+//*******************************
+//MARK: Frequency endpoint
+//*******************************
+
+
+
+
+
 //TODO:    let frequency: Double
-    
+
+
+
+
+
