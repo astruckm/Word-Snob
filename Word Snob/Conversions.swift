@@ -32,11 +32,11 @@ func definitionFromRetrievedEntry(_ retrievedEntry: RetrievedEntry) -> String {
     return ""
 }
 
-func inFrequencyFromRetrievedFrequency(_ retrievedFrequency: RetrievedFrequency) -> String {
+func inFrequencyFromRetrievedFrequency(_ retrievedFrequency: RetrievedFrequency) -> Double {
     let frequency = retrievedFrequency.result.normalizedFrequency
     let rawInfrequency = sqrt(1/Double(frequency))
     let infrequency = rawInfrequency.rounded()
-    return String(infrequency)
+    return infrequency
 }
 
 

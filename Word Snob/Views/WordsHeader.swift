@@ -38,7 +38,7 @@ class WordsHeader: UITableViewHeaderFooterView {
         addSubview(title)
         addSubview(totalScoreLabel)
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[v0]-[v1(==104)]-32-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": title, "v1": totalScoreLabel]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[v0]-[v1(==128)]-32-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": title, "v1": totalScoreLabel]))
             title.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         title.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         totalScoreLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true

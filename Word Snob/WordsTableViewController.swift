@@ -22,10 +22,7 @@ class WordsTableViewController: UITableViewController {
     var storedWords = [RetrievedEntry]()
     var storedFrequencies = [RetrievedFrequency]() //Need to combine this w/ storedWords
     var totalScore: Double = 0.0
-    var totalScoreString: String {
-        return String(totalScore)
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         newWordBar = UISearchBar(frame: CGRect(x: tableView.bounds.midX-100, y: 5, width: 200, height: 20))
@@ -92,15 +89,16 @@ extension WordsTableViewController {
         if !storedFrequencies.isEmpty {
             let retrievedFrequency = storedFrequencies[indexPath.row]
             let infrequency = inFrequencyFromRetrievedFrequency(retrievedFrequency)
-            cell.infrequency.text = infrequency
+            totalScore += infrequency
+            cell.infrequency.text = String(infrequency)
         }
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "wordHeaderID")
-
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "wordHeaderID") as! WordsHeader
+        header.totalScoreLabel.text = "Total Score: " + String(totalScore)
         return header
     }
 }
