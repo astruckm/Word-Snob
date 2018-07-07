@@ -27,6 +27,12 @@ class WordCell: UITableViewCell {
         label.adjustsFontSizeToFitWidth = true
         return label
     }()
+    
+    let infrequency: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -41,15 +47,12 @@ class WordCell: UITableViewCell {
     private func setUpViews() {
         addSubview(headWord)
         addSubview(definition)
+        addSubview(infrequency)
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[v0(>=80)]-8-[v1(>=150)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": headWord, "v1": definition]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[v0(==80)]-8-[v1(==150)]-16-[v2]-8-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": headWord, "v1": definition, "v2": infrequency]))
         headWord.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         definition.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        infrequency.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
     }
     
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-
 }

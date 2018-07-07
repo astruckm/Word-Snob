@@ -7,20 +7,23 @@
 //
 
 import UIKit
+import CoreData
 
 class WordsTableViewController: UITableViewController {
     var newWordBar: UISearchBar?
-    
-    let language = "en"
     var word = ""
-    
-    let querySession = QuerySession()
-    var storedWords = [RetrieveEntry]()
-    
     //word id is case sensitive and lowercase is required
     var wordID: String {
         //TODO: account for things like spaces before and after word, accent marks?, etc.
         return word.lowercased()
+    }
+    
+    let querySession = QuerySession()
+    var storedWords = [RetrievedEntry]()
+    var storedFrequencies = [RetrievedFrequency]() //Need to combine this w/ storedWords
+    var totalScore: Double = 0.0
+    var totalScoreString: String {
+        return String(totalScore)
     }
     
     override func viewDidLoad() {
@@ -33,6 +36,7 @@ class WordsTableViewController: UITableViewController {
         searchButton.setTitle("Add", for: .normal)
         searchButton.setTitleColor(.blue, for: .normal)
         searchButton.addTarget(self, action: #selector(addWord), for: .touchUpInside)
+        searchButton.addTarget(self, action: #selector(addInFrequencyToWord), for: .touchUpInside)
 
         navigationController?.navigationBar.addSubview(newWordBar!)
         navigationController?.navigationBar.addSubview(searchButton)
@@ -46,10 +50,20 @@ class WordsTableViewController: UITableViewController {
     @objc func addWord() {
         word = newWordBar?.text ?? ""
         newWordBar?.text = ""
-        querySession.query(inLanguage: language, withWord: wordID) { [unowned self] (retrievedEntry) in
-            self.storedWords.append(retrievedEntry)
+        querySession.queryEntry(withWord: wordID) { [weak self] (retrievedEntry) in
+            self?.storedWords.append(retrievedEntry)
+//            DispatchQueue.main.async {
+//                self?.tableView.reloadData()
+//            }
+            return
+        }
+    }
+    
+    @objc func addInFrequencyToWord() {
+        querySession.queryFrequency(withWord: wordID) { [weak self] (retrievedFrequency) in
+            self?.storedFrequencies.append(retrievedFrequency)
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                self?.tableView.reloadData()
             }
             return
         }
@@ -70,13 +84,16 @@ extension WordsTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "wordCellID", for: indexPath) as! WordCell
         let retrievedEntry = storedWords[indexPath.row]
-        let results = retrievedEntry.results.first
+        cell.headWord.text = headwordFromRetrievedEntry(retrievedEntry)
         
-        let headWord = results?.word
-        cell.headWord.text = headWord
-        
-        let shortDefinitions = results?.lexicalEntries[0].entries[0].senses[0].short_definitions[0]
+        let shortDefinitions = definitionFromRetrievedEntry(retrievedEntry)
         cell.definition.text = shortDefinitions
+        
+        if !storedFrequencies.isEmpty {
+            let retrievedFrequency = storedFrequencies[indexPath.row]
+            let infrequency = inFrequencyFromRetrievedFrequency(retrievedFrequency)
+            cell.infrequency.text = infrequency
+        }
         
         return cell
     }

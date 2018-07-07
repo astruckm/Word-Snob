@@ -17,7 +17,13 @@ class WordsHeader: UITableViewHeaderFooterView {
         return label
     }()
     
-    var totalScore: Double = 0.0
+    let totalScoreLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Total Score: "
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 16.0)
+        return label
+    }()
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -30,9 +36,12 @@ class WordsHeader: UITableViewHeaderFooterView {
     
     private func setUpViews() {
         addSubview(title)
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-10-[v0]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": title]))
+        addSubview(totalScoreLabel)
+        
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[v0]-[v1(==104)]-32-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": title, "v1": totalScoreLabel]))
             title.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         title.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        totalScoreLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
     }
 
     

@@ -13,7 +13,7 @@ import Foundation
 //*******************************
 
 //Top level
-struct RetrieveEntry: Decodable {
+struct RetrievedEntry: Decodable {
     let results: [HeadwordEntry]
 }
 
@@ -39,7 +39,6 @@ struct Sense: Decodable {
 }
 
 struct Pronunciation: Decodable {
-    //Inline Model 1
 }
 
 
@@ -47,12 +46,16 @@ struct Pronunciation: Decodable {
 //MARK: Frequency endpoint
 //*******************************
 
+struct RetrievedFrequency: Decodable {
+    let result: Result
+}
 
-
-
-
-//TODO:    let frequency: Double
-
+struct Result: Decodable {
+//    let frequency: Int
+//    let lemma: String
+//    let matchCount: Int
+    let normalizedFrequency: Float
+}
 
 
 
